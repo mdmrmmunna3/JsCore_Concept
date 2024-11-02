@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js email validation</title>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script>
+        let inputEmail = prompt('Enter Your Valid Email');
+
+        // email validaton with ternary operator usign includes method
+        document.write(inputEmail?.includes("@") && inputEmail.includes('.') ? 'This is valid email' : 'This is invalid email');
+
+        // email validation with regex validation / sir expection /
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        document.write(regex?.test(inputEmail) ? 'This is valid email' : 'This is invalid email');
+
+        // the output shows as an alert
+        regex?.test(inputEmail) ? alert('This is valid email') : alert('This is invalid email');
+
+        // email validation with loop methode 
+        while (!regex.test(inputEmail)) {
+            inputEmail = prompt("invalid email, please enter a valid email");
+        }
+        alert("Your email is valid:", inputEmail);
+
+        // find out the largest number 
+        const firstNum = prompt("Enter your first number");
+        const secondNum = prompt("Enter your second number");
+        const thirdNum = prompt("Enter your third number");
+
+        if (firstNum >= secondNum && firstNum >= thirdNum) {
+            document.write(`this is a largest number:`, firstNum);
+        }
+        else if (secondNum >= firstNum && secondNum >= thirdNum) {
+            document.write(`this is a largest number:`, secondNum);
+        }
+        else {
+            document.write(`this is a largest number:`, thirdNum);
+        }
+    </script>
+</body>
+
+</html>

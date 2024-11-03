@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+
+    <style>
+        #main_container {
+
+            width: 100%;
+        }
+
+        #form_container {
+            background: linear-gradient(to right, rgb(29, 194, 194), cornflowerblue);
+            padding: 40px;
+            width: 400px;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+
+
+        .input_box input,
+        .input_box textarea {
+            width: 100%;
+        }
+
+        .input_box,
+        .edu_box,
+        .round_box,
+        .gen_box {
+            margin-bottom: 10px;
+        }
+
+        label {
+            color: white;
+            margin-bottom: 8px;
+        }
+
+
+        .input_box input,
+        .input_box textarea {
+            padding: 5px;
+            outline: none;
+            /* border-radius: 5px; */
+            border: none;
+        }
+
+        button {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: transparent;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
+            margin-right: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section id="main_container">
+        <form action="#" id="form_container" name="formValue">
+            <table>
+                <div class="input_box">
+                    <label for="fsname">First Name</label>
+                    <input type="text" name="fsname" id="fsname" placeholder="Enter Your First Name" required>
+                </div>
+
+                <div class="input_box">
+                    <label for="lsname">Last Name</label>
+                    <input type="text" name="lsname" id="lsname" placeholder="Enter Your Last Name" required>
+                </div>
+
+                <div class="input_box">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+                </div>
+
+                <div class="input_box">
+                    <label for="pass">Password</label>
+                    <input type="password" name="pass" id="pass" placeholder="Enter Your Password" required>
+                </div>
+
+                <div class="gen_box">
+                    <label for="gender">Gender</label>
+                    <div>
+                        <input type="radio" name="gender" id="male" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+
+
+
+                <div class="edu_box">
+                    <label for="edu">Education</label>
+                    <div>
+                        <input type="checkbox" name="edu" id="dip" value="Diploma">
+                        <label for="dip">Diploma</label>
+                        <input type="checkbox" name="edu" id="ssc" value="SSC">
+                        <label for="ssc">SSC</label>
+                    </div>
+                </div>
+
+                <div class="round_box">
+                    <label for="round">Round</label>
+                    <div>
+                        <select name="round" id="round">
+                            <option value="62">62</option>
+                            <option value="61">61</option>
+                            <option value="60">60</option>
+                            <option value="59">59</option>
+                            <option value="58">58</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input_box">
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" placeholder="Write Your Address" required></textarea>
+
+                </div>
+
+                <div>
+                    <button onclick="handleSubmitForm()" type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+
+                </div>
+
+            </table>
+
+        </form>
+    </section>
+
+    <!-- js link  -->
+    <script>
+        const handleSubmitForm = () => {
+
+            if (document.getElementById('form_container').checkValidity()) {
+
+                let form = document.formValue;
+                let firstNameValue = form.fsname.value;
+                let secondNameValue = form.lsname.value;
+                let emailValue = form.email.value;
+                let passwordValue = form.pass.value;
+                let genderValue = form.gender.value;
+                let roundValue = form.round.value;
+                let addressValue = form.address.value;
+
+                let eduValue = '';
+                for (i = 0; i < form.edu.length; i++) {
+                    if (form.edu[i].checked) {
+                        eduValue += form.edu[i].value + ",";
+                    }
+                }
+                eduValue = eduValue.slice(0, -1);
+
+                let openNewWindow = window.open("", "", "width: 400px, height: 300px,");
+
+
+                with (openNewWindow.document) {
+                    write(`FirstName: ${firstNameValue} <br>`);
+                    write(`LastName: ${secondNameValue} <br>`);
+                    write(`Email: ${emailValue} <br>`);
+                    write(`Password: ${passwordValue} <br>`);
+                    write(`Gender: ${genderValue} <br>`);
+                    write(`Education: ${eduValue} <br>`);
+                    write(`Round: ${roundValue} <br>`);
+                    write(`Address: ${addressValue} <br> <br>`);
+                    write(`<button onclick='self.close()'>Close</button> `);
+                    write(`<button onclick='self.print()'>Print</button>`);
+                }
+
+
+                return true;
+            } else {
+                return false;
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

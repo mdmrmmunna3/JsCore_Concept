@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+
+    <style>
+        .form_container {
+            width: 600px;
+            background: linear-gradient(to right, darkcyan, rgb(97, 167, 236));
+            margin: 0 auto;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .input_box input {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            width: 95%;
+        }
+
+        .input_box,
+        .gen_box,
+        .edu_box,
+        .round_box {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: transparent;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <form action="#" class="form_container">
+            <div class="input_box">
+                <input type="text" name="fsname" id="fsname">
+                <input type="text" name="lsname" id="lsname">
+            </div>
+
+            <div class="input_box">
+                <input type="email" name="email" id="email">
+            </div>
+
+            <div class="input_box">
+                <input type="password" name="password" id="password">
+            </div>
+
+            <div class="input_box">
+                <input type="password" name="password" id="password">
+            </div>
+
+            <div class="gen_box" style="display: flex; align-items: center;">
+                <label for="gen">Gender</label>
+                <div>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+
+            <div class="edu_box" style="display: flex; align-items: center;">
+                <label for="edu">Education</label>
+                <div>
+                    <input type="checkbox" name="edu" id="dip" value="Diploma">
+                    <label for="dip">Diploma</label>
+                    <input type="checkbox" name="edu" id="ssc" value="SSC">
+                    <label for="ssc">SSC</label>
+                </div>
+            </div>
+
+            <div class="round_box" style="display: flex; align-items: center;">
+                <label for="round">Round</label>
+                <div>
+                    <select name="round" id="round">
+                        <option value="round" selected="selected">Round</option>
+                        <option value="62">62</option>
+                        <option value="61">61</option>
+                        <option value="60">60</option>
+                        <option value="59">59</option>
+                        <option value="58">58</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button onclick="handleSubmitForm()" type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+
+        </form>
+    </section>
+</body>
+
+</html>

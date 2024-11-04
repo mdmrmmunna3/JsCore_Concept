@@ -15,12 +15,13 @@
             display: flex;
             flex-direction: column;
             color: white;
+            border-radius: 5px;
         }
 
         .input_box input {
             margin-bottom: 10px;
             padding: 5px 10px;
-            width: 95%;
+            width: 96%;
         }
 
         .input_box,
@@ -45,22 +46,22 @@
 
 <body>
     <section>
-        <form action="#" class="form_container">
-            <div class="input_box">
-                <input type="text" name="fsname" id="fsname">
-                <input type="text" name="lsname" id="lsname">
+        <form action="#" class="form_container" name="formValue">
+            <div class="input_box" style="display: flex; gap: 3px;">
+                <input type="text" name="fsname" id="fsname" placeholder="First Name">
+                <input type="text" name="lsname" id="lsname" placeholder="Last Name">
             </div>
 
             <div class="input_box">
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" placeholder="Email">
             </div>
 
             <div class="input_box">
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" placeholder="Passowrd">
             </div>
 
             <div class="input_box">
-                <input type="password" name="password" id="password">
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Cofirm Password">
             </div>
 
             <div class="gen_box" style="display: flex; align-items: center;">
@@ -83,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="round_box" style="display: flex; align-items: center;">
+            <div class="round_box" style="display: flex; align-items: center; gap: 5px;">
                 <label for="round">Round</label>
                 <div>
                     <select name="round" id="round">
@@ -104,6 +105,52 @@
 
         </form>
     </section>
+
+
+    <!-- js   -->
+    <script>
+        const handleSubmitForm = () => {
+            // if (document.getElementById('form_container').checkVisibility()) {
+
+            let form = document.formValue;
+            let firstNameValue = form.fsname.vlaue;
+            let secondNameValue = form.lsname.vlaue;
+            let emailValue = form.email.vlaue;
+            let passwordValue = form.password.vlaue;
+            let confPasswordValue = form.confirmPassword.vlaue;
+            let genderValue = form.gender.value;
+            let roundValue = form.round.value;
+
+            let educationValue = '';
+            for (let i = 0; i < form.edu.length; i++) {
+                if (form.edu[i].checked) {
+                    educationValue += form.edu[i].value + ",";
+                }
+            }
+            educationValue = educationValue.slice(0, -1);
+
+            let openShowWindow = window.open("", "", "width:350px, height: 300px");
+
+            with (openShowWindow.document) {
+                write(`FirstName: ${firstNameValue} <br>`);
+                write(`LastName: ${secondNameValue} <br>`);
+                write(`Email: ${emailValue} <br>`);
+                write(`Password: ${passwordValue} <br>`);
+                write(`ConfirmPassword: ${confPasswordValue} <br>`);
+                write(`Gender: ${genderValue} <br>`);
+                write(`Education: ${educationValue} <br>`);
+                write(`Round: ${roundValue} <br>`);
+                write(`<button onclick='self.close()'>Close</button> `);
+                write(`<button onclick='self.print()'>Print</button>`);
+            }
+
+            //     return true;
+            // }
+            // else {
+            //     return false;
+            // }
+        }
+    </script>
 </body>
 
 </html>

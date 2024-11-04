@@ -66,74 +66,74 @@
 
     <section id="main_container">
         <form action="#" id="form_container" name="formValue">
-            <table>
-                <div class="input_box">
-                    <label for="fsname">First Name</label>
-                    <input type="text" name="fsname" id="fsname" placeholder="Enter Your First Name" required>
-                </div>
 
-                <div class="input_box">
-                    <label for="lsname">Last Name</label>
-                    <input type="text" name="lsname" id="lsname" placeholder="Enter Your Last Name" required>
-                </div>
+            <div class="input_box">
+                <label for="fsname">First Name</label>
+                <input type="text" name="fsname" id="fsname" placeholder="Enter Your First Name" required>
+            </div>
 
-                <div class="input_box">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
-                </div>
+            <div class="input_box">
+                <label for="lsname">Last Name</label>
+                <input type="text" name="lsname" id="lsname" placeholder="Enter Your Last Name" required>
+            </div>
 
-                <div class="input_box">
-                    <label for="pass">Password</label>
-                    <input type="password" name="pass" id="pass" placeholder="Enter Your Password" required>
-                </div>
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+            </div>
 
-                <div class="gen_box">
-                    <label for="gender">Gender</label>
-                    <div>
-                        <input type="radio" name="gender" id="male" value="male">
-                        <label for="male">Male</label>
-                        <input type="radio" name="gender" id="female" value="female">
-                        <label for="female">Female</label>
-                    </div>
-                </div>
+            <div class="input_box">
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="Enter Your Password" required>
+            </div>
 
-
-
-                <div class="edu_box">
-                    <label for="edu">Education</label>
-                    <div>
-                        <input type="checkbox" name="edu" id="dip" value="Diploma">
-                        <label for="dip">Diploma</label>
-                        <input type="checkbox" name="edu" id="ssc" value="SSC">
-                        <label for="ssc">SSC</label>
-                    </div>
-                </div>
-
-                <div class="round_box">
-                    <label for="round">Round</label>
-                    <div>
-                        <select name="round" id="round">
-                            <option value="62">62</option>
-                            <option value="61">61</option>
-                            <option value="60">60</option>
-                            <option value="59">59</option>
-                            <option value="58">58</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="input_box">
-                    <label for="address">Address</label>
-                    <textarea name="address" id="address" placeholder="Write Your Address" required></textarea>
-
-                </div>
-
+            <div class="gen_box">
+                <label for="gender">Gender</label>
                 <div>
-                    <button onclick="handleSubmitForm()" type="submit">Submit</button>
-                    <button type="reset">Reset</button>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
                 </div>
+            </div>
 
-            </table>
+
+
+            <div class="edu_box">
+                <label for="edu">Education</label>
+                <div>
+                    <input type="checkbox" name="edu" id="dip" value="Diploma">
+                    <label for="dip">Diploma</label>
+                    <input type="checkbox" name="edu" id="ssc" value="SSC">
+                    <label for="ssc">SSC</label>
+                </div>
+            </div>
+
+            <div class="round_box">
+                <label for="round">Round</label>
+                <div>
+                    <select name="round" id="round">
+                        <option value="62">62</option>
+                        <option value="61">61</option>
+                        <option value="60">60</option>
+                        <option value="59">59</option>
+                        <option value="58">58</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input_box">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" placeholder="Write Your Address" required></textarea>
+
+            </div>
+
+            <div>
+                <button onclick="handleSubmitForm()" type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </div>
+
+
 
         </form>
     </section>
@@ -165,7 +165,7 @@
 
 
                 with (openNewWindow.document) {
-                    write(`FirstName: ${firstNameValue} <br>`);
+                    write(`<p>FirstName: ${firstNameValue}</p> <br>`);
                     write(`LastName: ${secondNameValue} <br>`);
                     write(`Email: ${emailValue} <br>`);
                     write(`Password: ${passwordValue} <br>`);
@@ -176,7 +176,6 @@
                     write(`<button onclick='self.close()'>Close</button> `);
                     write(`<button onclick='self.print()'>Print</button>`);
                 }
-
 
                 return true;
             } else {

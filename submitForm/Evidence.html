@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evidance exam</title>
 
-
     <style>
         #form_container {
             background: linear-gradient(to left, cadetblue, dodgerblue);
@@ -57,15 +56,15 @@
         <form action="" id="form_container" name="form">
             <div class="inputBox">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" oninput="checkFormValidity()">
             </div>
             <div class="inputBox">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" onblur="emailChecker()" oninput="checkFormValidity()">
             </div>
             <div class="input_course">
                 <label for="course">Course</label>
-                <select name="course" id="course">
+                <select name="course" id="course" oninput="checkFormValidity()">
                     <option value="" selected="selected">Select Your Course</option>
                     <option value="htmlcss">HTML CSS</option>
                     <option value="javascript">Core Javascript</option>
@@ -78,46 +77,64 @@
 
             <div class="genderBox">
                 <label for="gender">Gender</label>
-                <input type="radio" name="gender" id="male" value="male">
+                <input type="radio" name="gender" id="male" value="male" oninput="checkFormValidity()">
                 <label for="male">Male</label>
-                <input type="radio" name="gender" id="female" value="female">
+                <input type="radio" name="gender" id="female" value="female" oninput="checkFormValidity()">
                 <label for="female">Female</label>
             </div>
 
             <div class="btn">
-                <button type="submit" onclick="handleSubmitForm()" class="sub">Submit</button>
+                <button type="submit" onclick="handleSubmitForm()" class="sub" disabled>Submit</button>
                 <button type="reset" class="res">Reset</button>
             </div>
 
         </form>
     </section>
 
-
     <script>
+        const emailChecker = () => {
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert(`Your Email is invalid. Please provide valid email`);
+            }
+        }
+
+        const checkFormValidity = () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const course = document.getElementById('course').value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+
+            const submitButton = document.querySelector('.sub');
+            submitButton.disabled = !(name && email && course && gender);
+        }
+
         const handleSubmitForm = () => {
             let formvalue = document.form;
             let nameValue = formvalue.name.value;
             let emailValue = formvalue.email.value;
             let courseValue = formvalue.course.value;
-            let genderVlaue = formvalue.gender.value;
-
+            let genderValue = formvalue.gender.value;
 
             let openWindow = window.open("", "", "width=500px, height=400px, top=150px, left=400px");
 
             with (openWindow.document) {
-                write(`<body>`)
-                write(`<div style=" background: linear-gradient(to right, cadetblue, dodgerblue);
-            width: 400px;
+                write(`<body style="background: linear-gradient(to left, rgb(32, 83, 85), rgb(50, 80, 110)">`)
+                write(`<div style="background: linear-gradient(to right, cadetblue, dodgerblue);
+            width: 300px;
             padding: 40px;
-            margin: 0 auto;
+            margin: 100px auto;
             color: white;
             border-radius: 5px;
-            box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px;">`);
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            ">`);
 
                 write(`Name: ${nameValue} <br>`);
                 write(`Email: ${emailValue} <br>`);
                 write(`Course: ${courseValue} <br>`);
-                write(`Gender: ${genderVlaue} <br> <br>`);
+                write(`Gender: ${genderValue} <br> <br>`);
                 write(`<button onclick="self.close()" style=" background-color: red; font-size: 16px;padding: 10px 20px;
                 border: none;
                 outline: none;

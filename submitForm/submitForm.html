@@ -43,6 +43,12 @@
             box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
             margin-right: 30px;
         }
+
+        .submitBtn:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -50,29 +56,31 @@
     <section>
         <form action="#" class="form_container" name="formValue">
             <div class="input_box" style="display: flex; gap: 3px;">
-                <input type="text" name="fsname" id="fsname" placeholder="First Name">
-                <input type="text" name="lsname" id="lsname" placeholder="Last Name">
+                <input type="text" name="fsname" id="fsname" placeholder="First Name" oninput="checkFormValidity()">
+                <input type="text" name="lsname" id="lsname" placeholder="Last Name" oninput="checkFormValidity()">
             </div>
 
             <div class="input_box">
-                <input type="email" name="email" id="email" placeholder="Email" onblur="isEmailValid()">
+                <input type="email" name="email" id="email" placeholder="Email" onblur="isEmailValid()"
+                    oninput="checkFormValidity()">
             </div>
 
             <div class="input_box">
-                <input type="password" name="password" id="password" placeholder="Passowrd" onblur="isPasswordValid()">
+                <input type="password" name="password" id="password" placeholder="Passowrd" onblur="isPasswordValid()"
+                    oninput="checkFormValidity()">
             </div>
 
             <div class="input_box">
                 <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Cofirm Password"
-                    onblur="isPasswordValid()">
+                    onblur="isPasswordValid()" oninput="checkFormValidity()">
             </div>
 
             <div class="gen_box" style="display: flex; align-items: center;">
                 <label for="gen">Gender</label>
                 <div>
-                    <input type="radio" name="gender" id="male" value="male">
+                    <input type="radio" name="gender" id="male" value="male" oninput="checkFormValidity()">
                     <label for="male">Male</label>
-                    <input type="radio" name="gender" id="female" value="female">
+                    <input type="radio" name="gender" id="female" value="female" oninput="checkFormValidity()">
                     <label for="female">Female</label>
                 </div>
             </div>
@@ -90,7 +98,7 @@
             <div class="round_box" style="display: flex; align-items: center; gap: 5px;">
                 <label for="round">Round</label>
                 <div>
-                    <select name="round" id="round">
+                    <select name="round" id="round" oninput="checkFormValidity()">
                         <option value="round" selected="selected">Round</option>
                         <option value="62">62</option>
                         <option value="61">61</option>
@@ -102,7 +110,7 @@
             </div>
 
             <div>
-                <button onclick="handleSubmitForm()" type="submit">Submit</button>
+                <button onclick="handleSubmitForm()" type="submit" class="submitBtn" disabled>Submit</button>
                 <button type="reset">Reset</button>
             </div>
 
@@ -116,11 +124,11 @@
             // if (document.getElementById('form_container').checkVisibility()) {
 
             let form = document.formValue;
-            let firstNameValue = form.fsname.vlaue;
-            let secondNameValue = form.lsname.vlaue;
-            let emailValue = form.email.vlaue;
-            let passwordValue = form.password.vlaue;
-            let confPasswordValue = form.confirmPassword.vlaue;
+            let firstNameValue = form.fsname.value;
+            let secondNameValue = form.lsname.value;
+            let emailValue = form.email.value;
+            let passwordValue = form.password.value;
+            let confPasswordValue = form.confirmPassword.value;
             let genderValue = form.gender.value;
             let roundValue = form.round.value;
 
@@ -155,25 +163,32 @@
             // }
         }
         const isEmailValid = () => {
-            let email = document.getElementById("email");
-            let emailNaN = /^[^ ]+@[^ ]+\.[a-z]{2,4}$/;
-            if (!emailNaN.test(email.value)) {
-                alert("please inter valid email");
-                document.getElementById('myEmail').style.borderColor = "#FF0000";
-                return false;
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z0-9]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                alert(`Your Email is invalid. Please provide valid email`);
             }
-            else {
-                document.getElementById('myEmail').style.borderColor = "#228B22";
-
-            }
-            return true;
         }
-        const isPasswordValid = () => {
-            let regxPass = /^(?=.*\d)[a-z0-9\d]{3,6}$/;
-            if (!regxPass.test(passwordValue.value)) {
-                alert("Password must be 3-6 characters long and include at least one number.");
-                return false;
-            }
+        // const isPasswordValid = () => {
+        //     const password = document.getElementById('password').value;
+        //     const regxPass = /^(?=.*\d)[a-z0-9\d]{3,6}$/;
+        //     if (!regxPass.test(password)) {
+        //         alert("Password must be 3-6 characters long and include at least one number.");
+        //     }
+        // }
+
+        const checkFormValidity = () => {
+            const firstName = document.getElementById('fsname').value.trim(); // remove white space in input field
+            const lastName = document.getElementById('lsname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const conPassword = document.getElementById('confirmPassword').value.trim();
+            const round = document.getElementById('round').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const education = document.querySelector('input[name="edu"]:checked');
+
+            const submitButton = document.querySelector('.submitBtn');
+            submitButton.disabled = !(firstName && lastName && email && password && conPassword && round && gender && education);
         }
     </script>
 </body>

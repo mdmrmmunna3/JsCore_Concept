@@ -37,9 +37,16 @@
             outline: none;
             border-radius: 5px;
             color: white;
-            background-color: rgb(60, 224, 82);
             font-size: 16px;
             cursor: pointer;
+        }
+
+        .sub {
+            background-color: rgb(60, 224, 82);
+        }
+
+        .res {
+            background-color: red;
         }
     </style>
 
@@ -78,7 +85,8 @@
             </div>
 
             <div class="btn">
-                <button type="submit" onclick="handleSubmitForm()">Submit</button>
+                <button type="submit" onclick="handleSubmitForm()" class="sub">Submit</button>
+                <button type="reset" class="res">Reset</button>
             </div>
 
         </form>
@@ -94,9 +102,18 @@
             let genderVlaue = formvalue.gender.value;
 
 
-            let openWindow = window.open("", "", "width=300px, height=300px, top=150px, left=300px");
+            let openWindow = window.open("", "", "width=500px, height=400px, top=150px, left=400px");
 
             with (openWindow.document) {
+                write(`<body>`)
+                write(`<div style=" background: linear-gradient(to right, cadetblue, dodgerblue);
+            width: 400px;
+            padding: 40px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px;">`);
+
                 write(`Name: ${nameValue} <br>`);
                 write(`Email: ${emailValue} <br>`);
                 write(`Course: ${courseValue} <br>`);
@@ -108,7 +125,7 @@
                 color: white;
                 cursor: pointer;" >Close</button> `);
 
-                write(`<button onclick="self.print()" style=" background-color: rgb(60, 224, 82); font-size: 16px;padding: 10px 20px;
+                write(`<button onclick="self.print()" style="background-color: rgb(60, 224, 82); font-size: 16px;padding: 10px 20px;
                 border: none;
                 outline: none;
                 border-radius: 5px;

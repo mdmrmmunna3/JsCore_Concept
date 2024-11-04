@@ -4,11 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Evidance exam</title>
+
+
+    <style>
+        #form_container {
+            background: linear-gradient(to left, cadetblue, dodgerblue);
+            width: 400px;
+            padding: 40px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px;
+        }
+
+        .inputBox,
+        .input_course,
+        .genderBox {
+            margin-bottom: 15px;
+        }
+
+        .inputBox input {
+            width: 100%;
+            padding: 5px 0;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 30px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+            background-color: rgb(60, 224, 82);
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
 
 <body>
+    <section>
+        <form action="" id="form_container" name="form">
+            <div class="inputBox">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="inputBox">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="input_course">
+                <label for="course">Course</label>
+                <select name="course" id="course">
+                    <option value="" selected="selected">Select Your Course</option>
+                    <option value="htmlcss">HTML CSS</option>
+                    <option value="javascript">Core Javascript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="react">React Js</option>
+                    <option value="php">PHP</option>
+                </select>
+            </div>
 
+            <div class="genderBox">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="male" value="male">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="female">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="btn">
+                <button type="submit" onclick="handleSubmitForm()">Submit</button>
+            </div>
+
+        </form>
+    </section>
+
+
+    <script>
+        const handleSubmitForm = () => {
+            let formvalue = document.form;
+            let nameValue = formvalue.name.value;
+            let emailValue = formvalue.email.value;
+            let courseValue = formvalue.course.value;
+            let genderVlaue = formvalue.gender.value;
+
+
+            let openWindow = window.open("", "", "width=300px, height=300px, top=150px, left=300px");
+
+            with (openWindow.document) {
+                write(`Name: ${nameValue} <br>`);
+                write(`Email: ${emailValue} <br>`);
+                write(`Course: ${courseValue} <br>`);
+                write(`Gender: ${genderVlaue} <br> <br>`);
+                write(`<button onclick="self.close()" style=" background-color: red; font-size: 16px;padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Close</button> `);
+
+                write(`<button onclick="self.print()" style=" background-color: rgb(60, 224, 82); font-size: 16px;padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Print</button> `);
+            }
+        }
+    </script>
 </body>
 
 </html>

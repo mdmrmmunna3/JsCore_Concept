@@ -128,7 +128,7 @@
             const name = document.getElementById('name').value;
             const nameValidMessage = document.querySelector('.nameValid');
             const submitButton = document.querySelector('.sub');
-            const namePattren = /^[0-9A-Za-z ]{4,11}$/;
+            const namePattren = /^[A-Za-z][0-9A-Za-z ]{3,10}$/;
             if (!namePattren.test(name)) {
                 nameValidMessage.style.display = 'inline';
             } else {

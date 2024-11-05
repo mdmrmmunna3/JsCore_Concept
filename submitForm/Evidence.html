@@ -62,7 +62,7 @@
         <form action="" id="form_container" name="form">
             <div class="inputBox">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" oninput="checkFormValidity()" onblur="nameChecker()">
+                <input type="text" name="name" id="name" oninput="checkFormValidity()" onchange="nameChecker()">
                 <span style="display: none; color: red; font-weight: 700;" class="nameValid error">Your Name must be
                     between
                     4-6
@@ -123,16 +123,23 @@
         }
 
         // Name Validation
+
         const nameChecker = () => {
             const name = document.getElementById('name').value;
             const nameValidMessage = document.querySelector('.nameValid');
             const submitButton = document.querySelector('.sub');
-
-            if (name.length < 4 || name.length > 12) {
+            const namePattren = /^[0-9A-Za-z]{4,11}$/;
+            if (!namePattren.test(name)) {
                 nameValidMessage.style.display = 'inline';
             } else {
                 nameValidMessage.style.display = 'none';
             }
+
+            // if (name.length < 4 || name.length > 12) {
+            //     nameValidMessage.style.display = 'inline';
+            // } else {
+            //     nameValidMessage.style.display = 'none';
+            // }
             checkFormValidity();
         }
 

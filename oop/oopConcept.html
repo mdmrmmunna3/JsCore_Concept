@@ -36,6 +36,50 @@
 
         const outputDekhbo = new Bike("amar Bike", "ami ja rakhbo", "peroson depended", "tmi kinte parba na");
         document.write(`Bike Name: ${outputDekhbo.name} <br> Bike Model: ${outputDekhbo.model} <br> Bike Color: ${outputDekhbo.color} <br> Bike Price: ${outputDekhbo.price}`);
+
+
+
+        class Animal {
+            constructor(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+
+            animalInfo() {
+                console.log(`The name of jungle king ${this.name} . it color ${this.color}`);
+            }
+        }
+
+        class Lion extends Animal {
+            constructor(name, color, sound) {
+                super(name, color); // call Animal class
+                this.sound = sound
+            }
+
+            addAnimalInfo() {
+                console.log(`The name of jungle king ${this.name} . it color ${this.color}. it's sound like ${this.sound}`);
+            }
+        }
+
+        class lionFamily extends Lion {
+            constructor(name, color, sound, behvior, habbit, food) {
+                super(name, color, sound)
+                this.behvior = behvior;
+                this.habbit = habbit;
+                this.food = food;
+            }
+
+            exportFamily() {
+                console.log(
+                    `The name of jungle king ${this.name} . it color ${this.color}. it's sound like ${this.sound}. ${this.behvior},${this.habbit},  
+                    `
+                )
+            }
+        }
+
+        const showOutpu = new lionFamily("Lion as simmba", "brown", "RrrrrrROOOOOOOOAAAAAARRRRR!", "he is a unique among cats in that they live in prides", "he is a significant amount of time grooming each other, especially among pride members.", "he need a diet rich in protein and fat, which they get from the flesh of their prey. ");
+
+        showOutpu.exportFamily();
     </script>
 
 </body>

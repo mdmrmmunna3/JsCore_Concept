@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Cookies</title>
+</head>
+
+<body>
+    <section>
+        <button onclick="setCookies()">Set Cookie</button>
+        <button onclick="showCookie()">Show Cookie</button>
+    </section>
+
+
+    <script>
+
+        const setCookies = () => {
+            let date = new Date();
+            date.setDate(date.getDate() + 1);  // Set expiration to 1 day from now
+            document.cookie = `username=Cookie; expires=${date.toUTCString()}; path=/`;
+        };
+
+        const showCookie = () => {
+            if (document.cookie) {
+                alert(document.cookie);  // Show all cookies
+            } else {
+                alert("Cookies not set!");
+            }
+        };
+    </script>
+</body>
+
+</html>

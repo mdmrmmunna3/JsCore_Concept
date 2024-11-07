@@ -1,13 +1,15 @@
-/**
+
 * 1. What do you mean by local and global variable?
  
     *> ans: Global variables are those variables which are declared outside of all function and it can be accessed form anywhere in the code, function.
     
     *> Local variables are only accessible within their defining function and are not available outside of it.
+    ```javascript
 
     Example : 
     let globalVar = "I'm a global variable";
-    function declared() {
+
+     function declared() {
         // Local variable
         let localVar = "I'm a local variable";
         
@@ -15,7 +17,9 @@
         console.log(localVar);   // Accessible here
     }
 
+
     declared();
+    ```
 
 * 2. What is the function of break and continue statement?
 
@@ -28,7 +32,7 @@
     Ans. == and === are comparison operators, but they work slightly differently:
     "== "(Equality operator): Compares only the values of the operands, ignoring the data type.
  
-    "===" (Strict equality operator): Compares both the operands' values and data types. 
+    "===" (Strict equality operator): Compares both values and data types of the operands' . 
 
 * 4. What is reserved word ? write five reserved word ?
 
@@ -54,10 +58,11 @@
 * 6. What is eval () in JavaScript ?
 
     Ans : The eval() function in JavaScript is used to evaluate the expression. It is JavaScirpt's global function, which evaluates the specified string as JavaScript code and executes it.
-
+ ```javascript
     Example: eval(string) or let x = 10;
                             let y = 20;
                             console.log(eval("x + y"));
+```
 
 * 7. What’s the difference between Var, Let, and Const?
     Ans. Var: It can be updated or re-declared.
@@ -67,6 +72,7 @@
 * 8. What is the different between while and do-while loop?
 
     Ans. Code First: The do...while loop runs the code at least once before checking the condition. This means the code inside will always execute once, even if the condition is false initially.
+  ``` javascript 
     Syntax: do {
                 // code to execute
                } while (condition);
@@ -76,6 +82,7 @@
                 i++;
             } while (i < 3);
 
+  ```
     while loop: Condition First: The while loop checks the condition before executing the code block. If the condition is false from the beginning, the code block may never run.
     Syntax: while (condition) {
                 // code to execute
@@ -89,25 +96,30 @@
 * 9. What is function ? How can you define function in JavaScript?
 
     Ans : A collection of statement which can perform a specific task and can be executed by an event of call to that function .we can have 
-    a) Built-in function
+  ```javascript 
+    //a) Built-in function
+
         let largestNumber = Math.max(10, 20, 30, 5);
         console.log(largestNumber);
-    b) User-defined functions.
+
+    //b) User-defined functions.
     // User-defined function example
     function greet(name) {
         return "Hello, " + name + "!";
     }
 
+  ```
 * 10. How to use ternary operator in JavaScript ?
     Ans: The ternary operator in JavaScript is a alternative way to an if-else statement. it has three operands: a condition followed by a question mark (?), then an expression to execute if the condition is truthy followed by a colon (:), and finally the expression to execute if the condition is false. This operator is frequently used as an alternative to an if...else statement. modify and simple this 
 
+   ```javascript 
     Syntax: condition ? expressionIfTrue : expressionIfFalse;
     let age = 18;
     let result = age >= 18 ? "Adult" : "Minor";
     console.log(result); // Output: "Adult"
+   ```
 
 
     shotcut : If the condition is true,it returns expressionIfTrue.
               If the condition is false,it returns expressionIfFalse.
 
-* */

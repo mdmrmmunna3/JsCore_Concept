@@ -19,7 +19,8 @@
         const setCookies = () => {
             let date = new Date();
             date.setDate(date.getDate() + 1);  // Set expiration to 1 day from now
-            document.cookie = `username=Cookie; expires=${date.toUTCString()}; path=/`;
+            // document.cookie = `username=Cookie; expires=${date.toUTCString()}; path=/`; //updating 
+            document.cookie = `username=cookie; expires= sat, 9 Nov 2024 9:31:00 UTC; path=/;`
         };
 
         const showCookie = () => {

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+
+    <style>
+        #form_container {
+            /* background: linear-gradient(to right, darkslategray, teal); */
+            background: linear-gradient(to right, rgb(39, 88, 88), rgb(60, 160, 160));
+            color: white;
+            width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 5px;
+        }
+
+        .input_box input {
+            width: 100%;
+            padding: 5px 0 5px 5px;
+            border: none;
+            outline: none;
+            /* margin-bottom: 15px; */
+        }
+
+        .input_box,
+        .gender_box,
+        .course_box {
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .gender_box input {
+            cursor: pointer;
+        }
+
+        .sub,
+        .res {
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+            background-color: transparent;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .sub:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <form action="" id="form_container" name="form">
+            <div class="input_box">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" onblur="nameChecker()" oninput="formCheckValidity()">
+                <span style=" display: none; color: brown; font-size: 16px; font-weight: 600;" class="nameMessage">Your
+                    Name must be 4-11 character!</span>
+            </div>
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" onblur="emailChecker()" oninput="formCheckValidity()">
+                <span style=" display: none; color: brown; font-size: 16px; font-weight: 600;" class="emailMess">Please
+                    Enter Your valid
+                    Email</span>
+            </div>
+
+            <div class="gender_box">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="male" value="Male" oninput="formCheckValidity()">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="Female" oninput="formCheckValidity()">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="course_box">
+                <label for="course">Course</label>
+                <select name="course" id="course" oninput="formCheckValidity()">
+                    <option value="" selected="selected">Select your Course!</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JAVASCRIPT">JAVASCRIPT</option>
+                </select>
+            </div>
+
+            <div class="btn">
+                <button type="submit" class="sub" onclick="handelSubmitFormBtn()" disabled>Submit</button>
+                <button type="reset" class="res">Reset</button>
+            </div>
+
+        </form>
+    </section>
+
+
+    <script>
+
+        const nameChecker = () => {
+            const name = document.getElementById('name').value;
+            const namePattern = /^[A-Za-z][0-9A-Za-z ]{3,10}$/;
+            const nameValidMessage = document.querySelector('.nameMessage');
+
+            if (!namePattern.test(name)) {
+                nameValidMessage.style.display = 'block';
+            }
+
+            else {
+                nameValidMessage.style.display = 'none';
+            }
+
+            formCheckValidity();
+        }
+
+        const emailChecker = () => {
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,4}$/;
+            const emailValidMessage = document.querySelector(".emailMess");
+
+            if (!emailPattern.test(email)) {
+                emailValidMessage.style.display = 'block';
+            }
+            else {
+                emailValidMessage.style.display = 'none';
+            }
+
+            formCheckValidity();
+        }
+
+        const formCheckValidity = () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const course = document.getElementById('course').value;
+            const submitBtn = document.querySelector('.sub');
+            const nameValidMessage = document.querySelector('.nameMessage');
+            const emailValidMessage = document.querySelector('.emailMess');
+
+            submitBtn.disabled = !(name && email && gender && course && emailValidMessage.style.display === 'none' && nameValidMessage.style.display === 'none');
+        }
+
+        const handelSubmitFormBtn = () => {
+            let formValue = document.form;
+
+            let nameValue = formValue.name.value;
+            let emailValue = formValue.email.value;
+            let genderValue = formValue.gender.value;
+            let courseValue = formValue.course.value;
+            console.log(nameValue, emailValue, genderValue, courseValue);
+
+            const openWindow = window.open("", "", "width=450px, height=500px, top=150px, left=300px");
+
+            with (openWindow.document) {
+                write(`<body style="background: linear-gradient(to right, darkslategray, teal)">`);
+                write(`<div style="background: linear-gradient(to right, rgb(39, 88, 88), rgb(60, 160, 160));
+            width: 300px;
+            padding: 40px;
+            margin: 100px auto;
+            color: white;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 10px 20px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            ">`);
+                write(`Name: ${nameValue} <br>`);
+                write(`Email: ${emailValue} <br>`);
+                write(`Gender: ${genderValue} <br>`);
+                write(`Course: ${courseValue} <br>`);
+                write(`<button onclick="self.close()" style=" background-color: red; font-size: 16px;padding: 10px 20px;
+                border: none;
+                margin-top: 10px;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Close</button> `);
+
+                write(`<button onclick="self.print()" style="background-color: rgb(60, 224, 82); font-size: 16px;padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Print</button> `);
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

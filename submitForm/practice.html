@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #form_container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            background: linear-gradient(to right, darkslategray, teal);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .input_box,
+        .gender_box,
+        .subject_box,
+        .course_box,
+        .addres_box {
+            margin-bottom: 15px;
+        }
+
+        .input_box input {
+            width: 100%;
+            padding: 5px 0 5px 5px;
+            border: none;
+            outline: none;
+        }
+
+        .addres_box textarea {
+            width: 100%;
+            padding: 5px 0 5px 5px;
+            border: none;
+            outline: none;
+        }
+
+        .sub:disabled {
+            cursor: not-allowed;
+            background-color: grey;
+        }
+
+        .sub {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            background-color: green;
+        }
+
+        .res {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <form action="" name="form" id="form_container">
+            <div class="input_box">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" onchange="nameChecker()" oninput="formCheckValidity()">
+                <span style="display: none; color: red; font-size: 16px;" class="nameMessage">Please provide Your Name
+                    must be 4-10 Character</span>
+            </div>
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" onblur="emailChecker()" oninput="formCheckValidity()">
+                <span style="display: none; color: red; font-size: 16px;" class="emailMess">Please provide Your valid
+                    Email!</span>
+            </div>
+
+            <div class="gender_box">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="male" value="Male" oninput="formCheckValidity()">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="Female" oninput="formCheckValidity()">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="course_box">
+                <label for="course">Course</label>
+                <select name="course" id="course" oninput="formCheckValidity()">
+                    <option value="" selected="selected">Choose Your course!</option>
+                    <option value="MBA">MBA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="CIS">CIS</option>
+                    <option value="EEE">EEE</option>
+                </select>
+            </div>
+            <div class="subject_box">
+                <label for="subject">Subject</label>
+                <input type="checkbox" name="subject" id="eng" value="english" oninput="formCheckValidity()">
+                <label for="eng">English</label>
+                <input type="checkbox" name="subject" id="ban" value="bangla" oninput="formCheckValidity()">
+                <label for="ban">Bangla</label>
+            </div>
+            <div class="addres_box">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" oninput="formCheckValidity()"></textarea>
+            </div>
+            <div class="btn">
+                <button class="sub" type="submit" onclick="handleFormSubmitBtn()" disabled>Submit</button>
+                <button type="reset" class="res">Reset</button>
+            </div>
+        </form>
+    </section>
+
+
+    <script>
+
+        const formCheckValidity = () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const course = document.getElementById('course').value;
+            const subject = document.querySelector('input[name="subject"]:checked');
+            const address = document.getElementById('address').value;
+
+            const submitButton = document.querySelector('.sub');
+            const nameValidMessage = document.querySelector('.nameMessage');
+            const emailValidMessage = document.querySelector('.emailMess');
+
+            submitButton.disabled = !(name && email && gender && course && address && nameValidMessage.style.display === 'none' && emailValidMessage.style.display === 'none');
+        }
+
+        const nameChecker = () => {
+            const name = document.getElementById('name').value;
+            const nameValidMessage = document.querySelector('.nameMessage');
+            const namePattern = /^[A-Za-z][A-Za-z0-9. ]{3,9}$/;
+
+            if (!namePattern.test(name)) {
+                nameValidMessage.style.display = 'block';
+            }
+            else {
+                nameValidMessage.style.display = 'none';
+            }
+
+
+            formCheckValidity();
+        }
+
+        const emailChecker = () => {
+            const email = document.getElementById('email').value;
+            const emailValidMessage = document.querySelector('.emailMess');
+            const emailPattern = /^[a-z0-9._%+-]+@gmail\.com$/;
+
+            if (!emailPattern.test(email)) {
+                emailValidMessage.style.display = 'block';
+            }
+            else {
+                emailValidMessage.style.display = 'none';
+            }
+
+
+            formCheckValidity();
+        }
+
+
+
+        const handleFormSubmitBtn = () => {
+            const formValue = document.form;
+            const nameValue = formValue.name.value;
+            const emailValue = formValue.email.value;
+            const genderValue = formValue.gender.value;
+            const courseValue = formValue.course.value;
+            const addressValue = formValue.address.value;
+            // let subjectValue = formValue.subject.value;
+
+            let subjectValue = '';
+            for (let i = 0; i < formValue.subject.length; i++) {
+                if (formValue.subject[i].checked) {
+                    subjectValue += formValue.subject[i].value + ',';
+                }
+            }
+            subjectValue = subjectValue.slice(0, -1);
+
+            const openWindow = window.open("", "", "width=400px, height=400px, top=200px, left=300px");
+
+            with (openWindow.document) {
+                write(`<div style="background: linear-gradient(to right, darkslategray, teal);
+            color: white; padding: 40px;
+            border-radius: 5px;">`)
+                write(`Name: ${nameValue} <br> <br>`);
+                write(`Email: ${emailValue} <br> <br>`);
+                write(`Gender: ${genderValue} <br> <br>`);
+                write(`Course: ${courseValue} <br> <br>`);
+                write(`Subject: ${subjectValue} <br> <br>`);
+                write(`Address: ${addressValue} <br> <br>`);
+                write(`<button onclick="self.close()" style=" background-color: red; font-size: 16px;padding: 10px 20px;
+                border: none;
+                margin-top: 10px;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Close</button> `);
+
+                write(`<button onclick="self.print()" style="background-color: rgb(60, 224, 82); font-size: 16px;padding: 10px 20px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;" >Print</button> `);
+            }
+        }
+    </script>
+</body>
+
+</html>

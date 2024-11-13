@@ -79,6 +79,13 @@
                 <span style="display: none; font-size: 16px; color: red;" class="emailMessage"> Please Provide Your
                     Valid Email</span>
             </div>
+            <div class="input_box">
+                <label for="password">password</label>
+                <input type="text" name="password" id="password" onchange="passwordValidChecker()"
+                    oninput="formCheckedValidatiy()">
+                <span style="display: none; font-size: 16px; color: red;" class="passMessage"> Password must be 4-8
+                    characters long and contain both uppercase and lowercase letters.</span>
+            </div>
             <div class="gender_box">
                 <label for="gender">Gender</label>
                 <input type="radio" name="gender" id="male" value="Male" oninput="formCheckedValidatiy()">
@@ -135,8 +142,9 @@
             const submitButton = document.querySelector('.sub');
             const nameValidMessage = document.querySelector('.nameMessage');
             const emailValidMessage = document.querySelector('.emailMessage');
+            const passValidMessage = document.querySelector('.passMessage');
 
-            submitButton.disabled = !(name && email && gender && course && subject && address && nameValidMessage.style.display === 'none' && emailValidMessage.style.display === 'none');
+            submitButton.disabled = !(name && email && gender && course && subject && address && nameValidMessage.style.display === 'none' && emailValidMessage.style.display === 'none' && passValidMessage.style.display === 'none');
         }
 
         // check name validation 
@@ -172,12 +180,29 @@
             formCheckedValidatiy();
         }
 
+        // check password validation 
+        const passwordValidChecker = () => {
+            const password = document.getElementById('password').value;
+            const passPattern = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z0-9. ]{4,8}$/;
+            // const passPattern = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z0-9]{4,8}$/;
+            const passValidMessage = document.querySelector('.passMessage');
+
+            if (!passPattern.test(password)) {
+                passValidMessage.style.display = "block";
+            }
+            else {
+                passValidMessage.style.display = "none";
+            }
+            formCheckedValidatiy();
+        }
+
 
         // handle form 
         const handelSubmitForm = () => {
             const formValues = document.formValues;
             const nameValue = formValues.name.value;
             const emailValue = formValues.email.value;
+            const passValue = formValues.password.value;
             const genderValue = formValues.gender.value;
             const courseValue = formValues.course.value;
             const addressValue = formValues.address.value;
@@ -202,6 +227,7 @@
                 padding: 40px;">`)
                 write(`Name: ${nameValue} <br> <br>`);
                 write(`Email: ${emailValue} <br> <br>`);
+                write(`Password: ${passValue} <br> <br>`);
                 write(`Gender: ${genderValue} <br> <br>`);
                 write(`Course: ${courseValue} <br> <br>`);
                 write(`Subject: ${subjectValue} <br> <br>`);

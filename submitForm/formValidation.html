@@ -62,13 +62,13 @@
         <form action="" id="form_container" name="form">
             <div class="input_box">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" onblur="nameChecker()" oninput="formCheckValidity()">
+                <input type="text" id="name" name="name" onchange="nameChecker()" oninput="formCheckValidity()">
                 <span style=" display: none; color: red; font-size: 16px; font-weight: 600;" class="nameMessage">Your
                     Name must be 4-11 character!</span>
             </div>
             <div class="input_box">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" onblur="emailChecker()" oninput="formCheckValidity()">
+                <input type="email" id="email" name="email" onchange="emailChecker()" oninput="formCheckValidity()">
                 <span style=" display: none; color: red; font-size: 16px; font-weight: 600;" class="emailMess">Please
                     Enter Your valid
                     Email</span>
@@ -94,7 +94,7 @@
 
             <div class="btn">
                 <button type="submit" class="sub" onclick="handelSubmitFormBtn()" disabled>Submit</button>
-                <button type="reset" class="res">Reset</button>
+                <button type="reset" class="res" onclick="resetBtn()">Reset</button>
             </div>
 
         </form>
@@ -103,11 +103,16 @@
 
     <script>
 
+        const resetBtn = () => {
+            setTimeout(formCheckValidity, 0);
+        }
+
         const nameChecker = () => {
             const name = document.getElementById('name').value;
             const namePattern = /^[A-Za-z][0-9A-Za-z ]{3,10}$/;
             const nameValidMessage = document.querySelector('.nameMessage');
 
+            // message show under filed with span
             if (!namePattern.test(name)) {
                 nameValidMessage.style.display = 'block';
             }
@@ -115,6 +120,11 @@
             else {
                 nameValidMessage.style.display = 'none';
             }
+
+            // message show with alert 
+            // if (!namePattern.test(name)) {
+            //     alert('Please Your Name must be 4-10 Character!')
+            // }
 
             formCheckValidity();
         }
@@ -124,12 +134,18 @@
             const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,4}$/;
             const emailValidMessage = document.querySelector(".emailMess");
 
+            // message show under filed with span
             if (!emailPattern.test(email)) {
                 emailValidMessage.style.display = 'block';
             }
             else {
                 emailValidMessage.style.display = 'none';
             }
+
+            // message show with alert
+            // if (!emailPattern.test(email)) {
+            //     alert('Please porive your valid email!');
+            // }
 
             formCheckValidity();
         }

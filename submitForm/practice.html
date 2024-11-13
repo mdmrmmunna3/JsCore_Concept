@@ -110,13 +110,16 @@
             </div>
             <div class="btn">
                 <button class="sub" type="submit" onclick="handleFormSubmitBtn()" disabled>Submit</button>
-                <button type="reset" class="res">Reset</button>
+                <button type="reset" class="res" onclick="resetBtn()">Reset</button>
             </div>
         </form>
     </section>
 
 
     <script>
+        const resetBtn = () => {
+            setTimeout(formCheckValidity, 0);
+        }
 
         const formCheckValidity = () => {
             const name = document.getElementById('name').value.trim();

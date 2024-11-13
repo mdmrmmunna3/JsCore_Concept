@@ -139,7 +139,7 @@
         const nameChecker = () => {
             const name = document.getElementById('name').value;
             const nameValidMessage = document.querySelector('.nameMessage');
-            const namePattern = /^[A-Za-z][A-Za-z0-9. ]{3,9}$/;
+            const namePattern = /^[A-Za-z][A-Za-z0-9. ]{3,11}$/;
 
             if (!namePattern.test(name)) {
                 nameValidMessage.style.display = 'block';

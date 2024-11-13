@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forn validation practice for exam</title>
+
+    <style>
+        #form_container {
+            width: 400px;
+            margin: 0 auto;
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            background: linear-gradient(to right, darkslategray, teal);
+            border-radius: 5px;
+            padding: 40px;
+        }
+
+        .input_box,
+        .gender_box,
+        .course_box,
+        .subject_box,
+        .address_box {
+            margin-bottom: 15px;
+        }
+
+        .input_box input,
+        .address_box textarea {
+            width: 100%;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            padding: 5px 0 5px 5px;
+        }
+
+        .sub {
+            border: none;
+            outline: none;
+            background-color: green;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .res {
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .sub:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <form action="" id="form_container" name="formValues">
+            <h2 style="text-align: center;">Registration Form!</h2>
+            <div class="input_box">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" onchange="nameValidChecker()" oninput="formCheckedValidatiy()">
+                <span style="display: none; font-size: 16px; color: red;" class="nameMessage"> Please Provide Your Name
+                    must be 4-10
+                    Character</span>
+            </div>
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" onchange="emailValidChecker()"
+                    oninput="formCheckedValidatiy()">
+                <span style="display: none; font-size: 16px; color: red;" class="emailMessage"> Please Provide Your
+                    Valid Email</span>
+            </div>
+            <div class="gender_box">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="male" value="Male" oninput="formCheckedValidatiy()">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="Female" oninput="formCheckedValidatiy()">
+                <label for="female">Female</label>
+            </div>
+            <div class="course_box">
+                <label for="course">Course</label>
+                <select name="course" id="course" oninput="formCheckedValidatiy()">
+                    <option value="" selected="selected">Choose your course!</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="JAVASCRIPT">JAVASCRIPT</option>
+                    <option value="PHP">PHP</option>
+                    <option value="REACTJS">REACTJS</option>
+                </select>
+            </div>
+            <div class="subject_box">
+                <label for="subject">Subject</label>
+                <input type="checkbox" name="subject" id="computer" value="Computer" oninput="formCheckedValidatiy()">
+                <label for="computer">Computer</label>
+                <input type="checkbox" name="subject" id="electrical" value="Electrical"
+                    oninput="formCheckedValidatiy()">
+                <label for="electrical">Electrical</label>
+                <input type="checkbox" name="subject" id="civil" value="Civil" oninput="formCheckedValidatiy()">
+                <label for="civil">Civil</label>
+            </div>
+            <div class="address_box">
+                <label for="address">Address</label>
+                <textarea name="address" id="address" oninput="formCheckedValidatiy()"></textarea>
+            </div>
+
+            <div class="btn">
+                <button type="submit" class="sub" onclick="handelSubmitForm()" disabled>Submit</button>
+                <button type="reset" class="res" onclick="resetBtn()">Reset</button>
+            </div>
+        </form>
+    </section>
+
+
+    <!-- js  -->
+    <script>
+
+        // handle formCheckedValidatiy with disabled button 
+        const formCheckedValidatiy = () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const course = document.getElementById('course').value;
+            const subject = document.querySelector('input[name="subject"]:checked');
+            const address = document.getElementById('address').value;
+
+            const submitButton = document.querySelector('.sub');
+            const nameValidMessage = document.querySelector('.nameMessage');
+            const emailValidMessage = document.querySelector('.emailMessage');
+
+            submitButton.disabled = !(name && email && gender && course && subject && address && nameValidMessage.style.display === 'none' && emailValidMessage.style.display === 'none');
+        }
+
+        // check name validation 
+        const nameValidChecker = () => {
+            const name = document.getElementById('name').value;
+            const namePattern = /^[A-Za-z][A-Za-z0-9. ]{3,11}$/;
+            const nameValidMessage = document.querySelector('.nameMessage');
+
+            if (!namePattern.test(name)) {
+                // alert("please Provide your name must be 4-10 Character");
+
+                nameValidMessage.style.display = "block";
+            }
+            else {
+                nameValidMessage.style.display = "none";
+            }
+            formCheckedValidatiy();
+        }
+
+        // check email validation
+        const emailValidChecker = () => {
+            const email = document.getElementById('email').value;
+            const emailPattern = /^[a-z0-9.%+-]+@gmail\.com$/;
+            const emailValidMessage = document.querySelector('.emailMessage');
+
+            if (!emailPattern.test(email)) {
+                // alert("please Provide your Valid Email");
+                emailValidMessage.style.display = "block";
+            }
+            else {
+                emailValidMessage.style.display = "none";
+            }
+            formCheckedValidatiy();
+        }
+
+
+        // handle form 
+        const handelSubmitForm = () => {
+            const formValues = document.formValues;
+            const nameValue = formValues.name.value;
+            const emailValue = formValues.email.value;
+            const genderValue = formValues.gender.value;
+            const courseValue = formValues.course.value;
+            const addressValue = formValues.address.value;
+
+            let subjectValue = '';
+            for (let i = 0; i < formValues.subject.length; i++) {
+                if (formValues.subject[i].checked) {
+                    subjectValue += formValues.subject[i].value + ',';
+                }
+            }
+
+            subjectValue = subjectValue.slice(0, -1);
+
+
+            const openWindow = window.open("", "", "width=400px, height=400px, top=100px, left=500px");
+
+            with (openWindow.document) {
+                write(`<div style="color: white;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                background: linear-gradient(to right, darkslategray, teal);
+                border-radius: 5px;
+                padding: 40px;">`)
+                write(`Name: ${nameValue} <br> <br>`);
+                write(`Email: ${emailValue} <br> <br>`);
+                write(`Gender: ${genderValue} <br> <br>`);
+                write(`Course: ${courseValue} <br> <br>`);
+                write(`Subject: ${subjectValue} <br> <br>`);
+                write(`Address: ${addressValue} <br> <br>`);
+                write(`<button onclick="self.close()" style="border: none;
+                outline: none;
+                background-color: red;
+                color: white;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;">Close</button>`);
+                write(`<button onclick="self.print()" style="border: none;
+                outline: none;
+                background-color: green;
+                color: white;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer; 
+                margin-left:10px;
+                ">Print</button>`);
+            }
+        }
+
+        //again disabled submit buttton after reset form
+        const resetBtn = () => {
+            setTimeout(formCheckedValidatiy, 0);
+        }
+    </script>
+</body>
+
+</html>

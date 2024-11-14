@@ -34,6 +34,14 @@
             padding: 5px 0 5px 5px;
         }
 
+        .input_box input.valid {
+            border: 2px solid green;
+        }
+
+        .input_box input.invalid {
+            border: 2px solid red;
+        }
+
         .sub {
             border: none;
             outline: none;
@@ -68,7 +76,8 @@
             <div class="input_box">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" onchange="nameValidChecker()" oninput="formCheckedValidatiy()">
-                <span style="display: none; font-size: 16px; color: red;" class="nameMessage"> Please Provide Your Name
+                <span style="display: none; font-size: 16px; color: red; font-weight: bold;" class="nameMessage"> Please
+                    Provide Your Name
                     must be 4-10
                     Character</span>
             </div>
@@ -76,14 +85,16 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" onchange="emailValidChecker()"
                     oninput="formCheckedValidatiy()">
-                <span style="display: none; font-size: 16px; color: red;" class="emailMessage"> Please Provide Your
+                <span style="display: none; font-size: 16px; color: red; font-weight: bold;" class="emailMessage">
+                    Please Provide Your
                     Valid Email</span>
             </div>
             <div class="input_box">
                 <label for="password">password</label>
                 <input type="text" name="password" id="password" onchange="passwordValidChecker()"
                     oninput="formCheckedValidatiy()">
-                <span style="display: none; font-size: 16px; color: red;" class="passMessage"> Password must be 4-8
+                <span style="display: none; font-size: 16px; color: red; font-weight: bold;" class="passMessage">
+                    Password must be 4-8
                     characters long and contain both uppercase and lowercase letters.</span>
             </div>
             <div class="gender_box">
@@ -152,13 +163,17 @@
             const name = document.getElementById('name').value;
             const namePattern = /^[A-Za-z][A-Za-z0-9. ]{3,11}$/;
             const nameValidMessage = document.querySelector('.nameMessage');
+            const nameField = document.getElementById('name');
 
             if (!namePattern.test(name)) {
                 // alert("please Provide your name must be 4-10 Character");
-
+                nameField.classList.add('invalid');
+                nameField.classList.remove('valid');
                 nameValidMessage.style.display = "block";
             }
             else {
+                nameField.classList.add('valid');
+                nameField.classList.remove('invalid');
                 nameValidMessage.style.display = "none";
             }
             formCheckedValidatiy();
@@ -169,12 +184,17 @@
             const email = document.getElementById('email').value;
             const emailPattern = /^[a-z0-9.%+-]+@gmail\.com$/;
             const emailValidMessage = document.querySelector('.emailMessage');
+            const emailField = document.getElementById('email');
 
             if (!emailPattern.test(email)) {
                 // alert("please Provide your Valid Email");
+                emailField.classList.add('invalid');
+                emailField.classList.remove('valid');
                 emailValidMessage.style.display = "block";
             }
             else {
+                emailField.classList.add('valid');
+                emailField.classList.remove('invalid');
                 emailValidMessage.style.display = "none";
             }
             formCheckedValidatiy();
@@ -186,11 +206,16 @@
             const passPattern = /^(?=.*[A-Z])(?=.*[a-z])[A-Za-z0-9. ]{4,8}$/;
             // const passPattern = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z0-9]{4,8}$/;
             const passValidMessage = document.querySelector('.passMessage');
+            const paswordField = document.getElementById('password');
 
             if (!passPattern.test(password)) {
+                paswordField.classList.add('invalid');
+                paswordField.classList.remove('valid');
                 passValidMessage.style.display = "block";
             }
             else {
+                paswordField.classList.add('valid');
+                paswordField.classList.remove('invalid');
                 passValidMessage.style.display = "none";
             }
             formCheckedValidatiy();

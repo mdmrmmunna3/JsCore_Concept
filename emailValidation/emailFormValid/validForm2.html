@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation Practice!</title>
+    <style>
+        #form_container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 5px;
+            color: white;
+            background: linear-gradient(to right, darkslategray, teal);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        .input_box,
+        .address_box,
+        .gender_box,
+        .round_box,
+        .subject_box {
+            margin-bottom: 15px;
+        }
+
+        .input_box input,
+        .address_box textarea,
+        .round_box select {
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            padding: 5px 0px 5px 8px;
+        }
+
+        .input_box input.valid {
+            border: 2px solid green;
+        }
+
+        .input_box input.invalid {
+            border: 2px solid red;
+        }
+
+        .sub {
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+            background-color: green;
+        }
+
+        .res {
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: white;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <form action="" name="formValue" id="form_container">
+            <h2 style="text-align: center;">Registration Form</h2>
+            <div class="input_box">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" oninput="nameValidChecker()">
+                <span style="display:none; color: red; font-size: 16px; margin-top: 2px; font-weight: bold;"
+                    class="nameMessage">Name Must be [A-Za-z0-9]</span>
+            </div>
+
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" oninput="emailValidChecker()">
+                <span style="display:none; color: red; font-size: 16px; margin-top: 2px; font-weight: bold;"
+                    class="emailMessage">Please Provide Your Valid Email</span>
+            </div>
+
+            <div class="input_box">
+                <label for="pass">Password</label>
+                <input type="text" name="pass" id="pass" oninput="passValidChecker()">
+                <span style="display:none; color: red; font-size: 16px; margin-top: 2px; font-weight: bold;"
+                    class="passMessage">Password must be longest 4-8 Character and both [A-Za-z]</span>
+            </div>
+
+            <div class="gender_box">
+                <label for="gender">Gender</label>
+                <input type="radio" name="gender" id="male" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="Female">
+                <label for="female">Female</label>
+            </div>
+
+            <div class="round_box">
+                <label for="round">Round</label>
+                <select name="round" id="round">
+                    <option value="">Select Your Round!</option>
+                    <option value="Round62">Round62</option>
+                    <option value="Round61">Round61</option>
+                    <option value="Round60">Round60</option>
+                    <option value="Round59">Round59</option>
+                    <option value="Round58">Round58</option>
+                </select>
+            </div>
+
+            <div class="subject_box">
+                <label for="subject">Subject</label>
+                <input type="checkbox" name="subject" id="Javascript" value="Javascript">
+                <label for="Javascript">Javascript</label>
+                <input type="checkbox" name="subject" id="Python" value="Python">
+                <label for="Python">Python</label>
+                <input type="checkbox" name="subject" id="PHP" value="PHP">
+                <label for="PHP">PHP</label>
+            </div>
+
+            <div class="address_box">
+                <label for="address">Address</label>
+                <textarea name="address" id="address"></textarea>
+            </div>
+
+            <div class="btn">
+                <button type="submit" class="sub" onclick="handleSubmitBtn()">Submit</button>
+                <button type="reset" class="res">Reset</button>
+            </div>
+        </form>
+    </section>
+
+
+    <!-- js  -->
+    <script src="valid.js"></script>
+</body>
+
+</html>
